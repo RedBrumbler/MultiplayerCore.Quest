@@ -1,10 +1,10 @@
-#include "NodePoseSyncState/MpNodePoseSyncStatePacket.hpp"
+#include "ScorePoseSyncState/MpScoreSyncStatePacket.hpp"
 #include "GlobalNamespace/VarIntExtensions.hpp"
 
-DEFINE_TYPE(MultiplayerCore::NodePoseSyncState, MpNodePoseSyncStatePacket);
+DEFINE_TYPE(MultiplayerCore::ScoreSyncState, MpScoreSyncStatePacket);
 
-namespace MultiplayerCore::NodePoseSyncState {
-    void MpNodePoseSyncStatePacket::ctor() {
+namespace MultiplayerCore::ScoreSyncState {
+    void MpScoreSyncStatePacket::ctor() {
         INVOKE_BASE_CTOR(classof(MultiplayerCore::Networking::Abstractions::MpPacket*));
     }
 
