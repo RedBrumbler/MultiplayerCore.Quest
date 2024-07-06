@@ -1,4 +1,4 @@
-#include "ScorePoseSyncState/MpScoreSyncStatePacket.hpp"
+#include "ScoreSyncState/MpScoreSyncStatePacket.hpp"
 #include "GlobalNamespace/VarIntExtensions.hpp"
 
 DEFINE_TYPE(MultiplayerCore::ScoreSyncState, MpScoreSyncStatePacket);
@@ -8,13 +8,13 @@ namespace MultiplayerCore::ScoreSyncState {
         INVOKE_BASE_CTOR(classof(MultiplayerCore::Networking::Abstractions::MpPacket*));
     }
 
-    void MpNodePoseSyncStatePacket::Serialize(LiteNetLib::Utils::NetDataWriter* writer) {
-        writer->PutVarLong(deltaUpdateFrequencyMs);
-        writer->PutVarLong(fullStateUpdateFrequencyMs);
+    void MpScoreSyncStatePacket::Serialize(LiteNetLib::Utils::NetDataWriter* writer) {
+        GlobalNamespace::VarIntExtensions::PutVarLong(writer, deltaUpdateFrequencyMs);
+        GlobalNamespace::VarIntExtensions::PutVarLong(writer, fullStateUpdateFrequencyMs);
     }
 
-    void MpNodePoseSyncStatePacket::Deserialize(LiteNetLib::Utils::NetDataReader* reader) {
-        deltaUpdateFrequencyMs = reader->GetVarLong();
-        fullStateUpdateFrequencyMs = reader->GetVarLong();
+    void MpScoreSyncStatePacket::Deserialize(LiteNetLib::Utils::NetDataReader* reader) {
+        deltaUpdateFrequencyMs = GlobalNamespace::VarIntExtensions::GetVarLong(reader);
+        fullStateUpdateFrequencyMs = GlobalNamespace::VarIntExtensions::GetVarLong(reader);
     }
 }
